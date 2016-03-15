@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="samplecode">
+      <UniqueIdentifier>{bee33c29-47ee-4573-8d41-d4a962f7fa13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="task">
+      <UniqueIdentifier>{7cf969cf-d08d-4e4d-a12d-08ab1f3c8e6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="projectframe">
+      <UniqueIdentifier>{a655701e-2dde-40f9-8654-e7f97e69e8d2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\projectframe\main.cpp">
+      <Filter>projectframe</Filter>
+    </ClCompile>
+    <ClCompile Include="src\projectframe\EngineEnvironment.cpp">
+      <Filter>projectframe</Filter>
+    </ClCompile>
+    <ClCompile Include="src\projectframe\publicfun.cpp">
+      <Filter>projectframe</Filter>
+    </ClCompile>
+    <ClCompile Include="src\projectframe\EngineTask.cpp">
+      <Filter>projectframe</Filter>
+    </ClCompile>
+    <ClCompile Include="src\projectframe\RequestCMDParser.cpp">
+      <Filter>projectframe</Filter>
+    </ClCompile>
+    <ClCompile Include="src\projectframe\RequestCommand.cpp">
+      <Filter>projectframe</Filter>
+    </ClCompile>
+    <ClCompile Include="src\projectframe\TaskFactory.cpp">
+      <Filter>projectframe</Filter>
+    </ClCompile>
+    <ClCompile Include="src\projectframe\ClientSession.cpp">
+      <Filter>projectframe</Filter>
+    </ClCompile>
+    <ClCompile Include="src\task\TaskLogin.cpp">
+      <Filter>task</Filter>
+    </ClCompile>
+    <ClCompile Include="src\task\TaskRegister.cpp">
+      <Filter>task</Filter>
+    </ClCompile>
+    <ClCompile Include="src\projectframe\ProjectServer.cpp">
+      <Filter>projectframe</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\projectframe\EngineEnvironment.h">
+      <Filter>projectframe</Filter>
+    </ClInclude>
+    <ClInclude Include="src\projectframe\publicfun.h">
+      <Filter>projectframe</Filter>
+    </ClInclude>
+    <ClInclude Include="src\projectframe\EngineTask.h">
+      <Filter>projectframe</Filter>
+    </ClInclude>
+    <ClInclude Include="src\projectframe\RequestCMDParser.h">
+      <Filter>projectframe</Filter>
+    </ClInclude>
+    <ClInclude Include="src\projectframe\RequestCommand.h">
+      <Filter>projectframe</Filter>
+    </ClInclude>
+    <ClInclude Include="src\projectframe\ClientSession.h">
+      <Filter>projectframe</Filter>
+    </ClInclude>
+    <ClInclude Include="src\task\TaskLogin.h">
+      <Filter>task</Filter>
+    </ClInclude>
+    <ClInclude Include="src\task\TaskRegister.h">
+      <Filter>task</Filter>
+    </ClInclude>
+    <ClInclude Include="src\task\TaskInterfaceDef.h">
+      <Filter>task</Filter>
+    </ClInclude>
+    <ClInclude Include="src\projectframe\TaskData.h">
+      <Filter>projectframe</Filter>
+    </ClInclude>
+    <ClInclude Include="src\projectframe\ProjectServer.h">
+      <Filter>projectframe</Filter>
+    </ClInclude>
+    <ClInclude Include="src\projectframe\TaskFactory.h">
+      <Filter>projectframe</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

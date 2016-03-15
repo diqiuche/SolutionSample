@@ -1,0 +1,505 @@
+期货1.5配置
+*.h
+..\..\..\PB\project\inc;..\..\..\PB\contrib;
+*.lib
+..\..\..\PB\project\inc\afw\api\lib_vc100\$(Platform)\$(Configuration)
+..\..\..\PB\contrib\google\protobuf\lib_vc100\$(Configuration)
+AfwProtobuf.lib
+libprotobuf.lib
+libprotobuf-lite.lib
+
+svn checkout http://192.168.1.50/repos/trunk/pzAssetSystem
+svn checkout http://code.taobao.org/svn/SolutionSample/
+svn ci -m "注释内容" //提交
+
+ip:192.168.1.65
+su : fuandaco
+pztest 
+make
+make install INSTALL_DIR=~
+scp exe_fuanda_pzsystem pzuser@118.126.10.36:/home/pzuser/fuanda/pzsystem/bin
+scp pztest@192.168.1.65:/home/pztest/fuanda1.5/pzsystem/bin ./
+cp ~/exe_fuanda_pzsystem ./
+scp -r lib pzuser@118.126.10.36:/home/pzuser/fuanda/pzsystem/
+
+
+ps aux | grep exe_fuanda
+
+export LD_LIBRARY_PATH=~/fuanda/pzsystem/lib:$LD_LIBRARY_PATH
+export pzasset_db_conf_file_path=~/fuanda/pzsystem/etc/db.conf
+export pzasset_mq_conf_file_path=~/fuanda/pzsystem/etc/mq.conf
+export pzasset_redis_conf_file_path=~/fuanda/pzsystem/etc/redis.conf
+export DAT_Path=~/fuanda/dat/
+export COUT_LOG_LEVEL=1
+export FILE_LOG_LEVEL=1
+export ENABLE_COUT_LOG=1
+export ENABLE_FILE_LOG=1
+export ENABLE_DATA_LOG=0
+ 	
+export LD_LIBRARY_PATH=/home/pztest/fuanda/pzsystem/lib:$LD_LIBRARY_PATH
+export pzasset_db_conf_file_path=/home/pztest/fuanda/pzsystem/etc/db.conf
+export pzasset_mq_conf_file_path=/home/pztest/fuanda/pzsystem/etc/mq.conf
+export pzasset_redis_conf_file_path=/home/pztest/fuanda/pzsystem/etc/redis.conf
+export DAT_Path=/home/pztest/fuanda/dat/
+export COUT_LOG_LEVEL=1
+export FILE_LOG_LEVEL=1
+export ENABLE_COUT_LOG=1
+export ENABLE_FILE_LOG=1
+export ENABLE_DATA_LOG=0 	
+ 	
+export LD_LIBRARY_PATH=~/fuanda1.0/fuanda/pzsystem/lib:$LD_LIBRARY_PATH
+export pzasset_db_conf_file_path=~/fuanda1.0/fuanda/pzsystem/etc/db.conf
+export pzasset_mq_conf_file_path=~/fuanda1.0/fuanda/pzsystem/etc/mq.conf
+export pzasset_redis_conf_file_path=~/fuanda1.0/fuanda/pzsystem/etc/redis.conf
+export DAT_Path=~/fuanda1.0/fuanda/dat/
+export COUT_LOG_LEVEL=1
+export FILE_LOG_LEVEL=1
+export ENABLE_COUT_LOG=1
+export ENABLE_FILE_LOG=1
+export ENABLE_DATA_LOG=0
+ 	
+batch
+65
+cd /home/pztest/pzbatch/src
+make
+scp pzbatch pzuser@118.126.10.36:/home/pzuser
+
+36
+cd /home/pzuser/fuanda/pzbatch/bin
+cp ~/pzbatch ./ 	
+ 	
+ mq
+ cd /home/pztest/MOM/src/fndcms/fndcms
+ 
+ 
+ http://192.168.1.127:8161/admin/queues.jsp
+ fndqa 123456
+/home/fndqa/tmp/apache-activemq-5.10.0/bin/linux-x86-64
+./activemq stop
+./activemq start  
+65
+/home/pztest/apache-activemq-5.10.0/bin/linux-x86-64
+
+修改activemq
+svn version 27836
+
+mysql
+mysql -upz -p456789 -h192.168.1.65 -P3307
+mysql -upz -p123456 -h192.168.1.168 -P3306
+show databases;
+目前数据库连接数
+status
+show processlist；
+
+
+linux 命令
+http://www.man7.org/tlpi/code/online/all_files_by_chapter.html
+动态查看文件
+tail -f filename
+
+find . -name Makefile | xargs grep "IFTransaction"
+
+清空文件
+touch filename
+
+sudo yum install tcpdump
+tcpdump -t -N 'port 5555'
+netstat -a --tcp
+
+tar -czvf test.tar.gz test/
+tar -xzvf test.tar.gz
+
+ls -l | grep "^-" | wc -l
+
+whereis ls
+which ls
+echo $PATH
+PATH=$PATH:./
+
+ctrl+z 
+可以将一个正在前台执行的命令放到后台，并且处于暂停状态，不可执行
+jobs -l
+fg
+将后台中的命令调至前台继续运行
+bg
+将一个在后台暂停的命令，变成继续执行 （在后台执行）
+ctrl+z -> bg
+将一个在后台暂停的命令，变成继续执行 （在后台执行）
+
+vim 
+:.s/from/to/g   ：  在当前行进行替换操作。
+:33s/from/to/g  ：  在第33行进行替换操作。
+:%s/from/to/g   :		对所有行的内容进行替换。
+
+sudo more /etc/gshadow
+
+Xshell sftp
+get 从服务器下载到本地 /home -> G:/
+put 从本地上传到服务器 
+ 
+查看文件i-node信息 
+ ls -li 
+链接
+ln one.txt two.txt
+ln -s one.txt two.txt
+ 
+查看软件是否安装
+rpm -qa | grep gcc 
+ 
+linux 静态库 -----------------------------------------------------------------------
+libhello.c 库文件源文件
+libhello.h 库头文件
+usehello.c 测试程序
+
+gcc -c libhello.c
+生成目标文件： libhello.o
+创建静态库
+ar rcs libhello.a libhello.o
+使用静态库:库文件为当前目录 libhello.a -> hello
+分两步：
+gcc -c usehello.c
+gcc -o usehello_static usehello.o -L./ -lhello 
+仅一步：
+gcc -o usehello_static usehello.c -L./ -lhello 
+
+vs2010动态库
+新建Win32项目
+1.修改工程属性中->配置属性->常规中“字符集”选项中默认为“使用UNICODE 字符集”，
+每个工程都需手动修改为“使用多字节字符集”
+2.c/c++/预编译头改为：不使用预编译头
+SimpleDll.h
+#ifndef HEAD_INTERFACE_SIMPLE_
+#define HEAD_INTERFACE_SIMPLE_
+
+#ifndef _WIN32
+	#define EXPORT_INTERFACE_CLASS_RC
+#else
+	#ifdef SIMPLEDLL2_EXPORTS 
+		#define EXPORT_INTERFACE_CLASS_RC _declspec(dllexport)
+	#else
+		#define EXPORT_INTERFACE_CLASS_RC _declspec(dllimport)
+	#endif
+#endif
+
+extern "C"
+{
+	EXPORT_INTERFACE_CLASS_RC void printfdll( void );
+}
+#endif
+
+SimpleDll.cpp
+#ifdef _WIN32
+#include "stdafx.h"
+#endif
+
+#include <stdio.h>
+#include "SimpleDLL2.h"
+
+void printfdll( void )
+{
+	printf("hello simpledll\n");
+}
+使用说明：http://www.cnblogs.com/coder2012/archive/2013/04/27/3046573.html
+lib/dll: http://www.tuicool.com/articles/VVrMreJ
+
+linux 动态库------------------------------------------------------------------------
+libhello.c 库文件源文件
+libhello.h 库头文件
+usehello.c 测试程序
+
+1.-fPIC 生成与位置无关的代码 -Wall 去除所有警告 -g 加上调试信息
+gcc -fPIC -Wall -g -c libhello.c
+ls libhello.o
+gcc -g -shared -W1,-soname,libhello.so.1.0 -o libhello.so.1.0 libhello.o -lc //引用C库
+创建连接
+ln -sf libhello.so.1.0 libhello.so
+
+使用动态库
+gcc -Wall -g -c usehello.c
+1.把库文件名的头lib和尾.so去掉就是库名了 libhello.so->hello
+2.在/lib和/usr/lib和/usr/local/lib里的库直接用-l参数就能链接了，但如果库文件没放在这三个目录里，
+使用-L参数，跟着的是库文件所在的目录名
+gcc -g -o usehello_dynamic usehello.o -L./ -lhello
+-Duse_namespace -fPIC -I./libevent/include/
+查看使用哪些动态库
+ldd usehello_dynamic
+
+运行程序，需要指定库的搜索路径：
+拷贝到/lib和/usr/lib和/usr/local/lib
+export LD_LIBRARY_PATH=~/fuanda/pzsystem/lib:$LD_LIBRARY_PATH
+
+shell--------------------------------------------------------------------------------
+#!/bin/bash
+
+分号是多个语句之间的分割符号，当只有一个语句的时候，末尾无需分号，最后一个语句后面也无需分号。
+
+echo "What is your name?"
+read PERSON   #stdin 获取输入并赋值给 PERSON 变量
+echo "Hello, $PERSON" #双引号可有可无，单引号主要用在原样输出中。
+
+1.变量 大小写敏感 注意空格
+name=100
+name="mozhiyan"
+DATE=`date` #命令赋值
+val=`expr 2 + 2` #表达式和运算符之间要有空格，例如 2+2 是不对的，必须写成 2 + 2
+val=`expr $a \* $b` #乘号(*)前边必须加反斜杠(\)才能实现乘法运算
+echo $name
+变量名和等号之间不能有空格
+
+2.Shell特殊变量
+$0	当前脚本的文件名
+$n	传递给脚本或函数的参数。n 是一个数字，表示第几个参数。例如，第一个参数是$1，第二个参数是$2。
+$#	传递给脚本或函数的参数个数。
+$*	传递给脚本或函数的所有参数。
+$@	传递给脚本或函数的所有参数。被双引号(" ")包含时，与 $* 稍有不同，下面将会讲到。
+$?	上个命令的退出状态，或函数的返回值。
+$$	当前Shell进程ID。对于 Shell 脚本，就是这些脚本所在的进程ID。
+
+$* $@ "$@":数组 "$*":字串
+
+3.替换
+echo -e "Value of a is $a \n" #这里 -e 表示对转义字符进行替换。如果不使用 -e 选项，将会原样输出
+双引号里可以有变量
+双引号里可以出现转义字符
+
+${var:-word}	如果变量 var 为空或已被删除(unset)，那么返回 word，但不改变 var 的值。
+${var:=word}	如果变量 var 为空或已被删除(unset)，那么返回 word，并将 var 的值设置为 word。
+
+val=`expr 2 + 2`
+
+if [ $a == $b ] #注意：条件表达式要放在方括号之间，并且要有空格，例如 [$a==$b] 是错误的，必须写成 [ $a == $b ]
+then
+   echo "a is equal to b"
+fi
+
+比较ref:
+http://c.biancheng.net/cpp/view/2736.html
+
+字符串
+greeting="hello, "$name
+
+string="abcd"
+echo ${#string} #输出 4
+
+string="alibaba is a great company"
+echo ${string:1:4} #输出liba
+
+string="ababa is a great company"
+echo `expr index "$string" "ib"`
+2 #查找子字符串中任一字符位置
+
+NAME=(value0 value1 value2 value3)
+
+NAME[0]="Zara"
+NAME[1]="Qadir"
+echo "First Index: ${NAME[0]}"
+echo "Second Index: ${NAME[1]}"
+//使用@ 或 * 可以获取数组中的所有元素，例如：
+${array_name[*]}
+${array_name[@]}
+//取得数组元素的个数
+length=${#array_name[@]} 或者 length=${#array_name[*]}
+//取得数组单个元素的长度
+lengthn=${#array_name[1]}
+
+printf "%d %s\n" 1 "abc"
+
+判断语句 if
+if test $[2*3] -eq $[1+5]; then echo 'The two numbers are equal!'; fi;
+The two numbers are equal!
+
+num1=$[2*3]
+num2=$[1+5]
+if test $num1 -eq $num2
+then
+    echo 'The two numbers are equal!'
+else
+    echo 'The two numbers are not equal!'
+fi
+
+echo 'Input a number between 1 to 4'
+echo 'Your number is:\c'
+read aNum
+case $aNum in
+    1)  echo 'You select 1'
+    ;;
+    2)  echo 'You select 2'
+    ;;
+    3)  echo 'You select 3'
+    ;;
+    4)  echo 'You select 4'
+    ;;
+    *)  echo 'You do not select a number between 1 to 4'
+        exit 1 # Command to come out of the program with status 1
+    ;;
+esac
+
+for loop in 1 2 3 4 5
+do
+    echo "The value is: $loop"
+done
+
+a=0
+while [ $a -lt 10 ]
+do
+   echo $a
+   a=`expr $a + 1`
+done
+
+#until 循环执行一系列命令直至条件为 true 时停止。
+a=0
+until [ ! $a -lt 10 ]
+do
+   echo $a
+   a=`expr $a + 1`
+done
+
+number_one () {
+   echo "Url_1 is http://see.xidian.edu.cn/cpp/shell/"
+   number_two
+}
+number_two () {
+   echo "Url_2 is http://see.xidian.edu.cn/cpp/u/xitong/"
+}
+number_one
+
+$command > file 2>&1
+
+#将外部脚本的内容合并到当前脚本,被包含脚本不需要有执行权限。
+source filename
+
+Makefile
+$@ 表示规则中的目标文件集。如果有多个目标，那么，"$@"就是匹配于目标中模式定义的集合。
+$^ 所有的依赖集合。以空格分隔。如果在依赖目标中有多个重复的，那个这个变量会去除重复的依赖目标，只保留一份。
+$< 依赖第一个名字。如果依赖目标是以模式（即"%"）定义的，那么"$<"将是符合模式的一系列的文件集。注意，其是一个一个取出来的。
+
+变量：在Makefile中的定义的变量，就像是C/C++语言中的宏一样
+objects = program.o foo.o utils.o
+program : $(objects)
+cc -o program $(objects)
+
+Makefile shell注意点
+http://www.blogjava.net/jasmine214--love/archive/2012/01/10/368191.html
+1：尽在Makefile文件的目标项冒号后的另起一行的代码才是shell代码。
+2：Makefile中的shell，每一行是一个进程，不同行之间变量值不能传递。所以，Makefile中的shell不管多长也要写在一行。
+3：Makefile中的变量以$开头， 所以，为了避免和shell的变量冲突，shell的变量以$$开头
+
+
+
+SOURCES = $(foreach d,$(SRCDIRS),$(wildcard $(addprefix $(d)/*,$(SRCEXTS))))
+OBJS= $(patsubst %.cpp,./obj/%.o,$(notdir $(SOURCES)))
+GCNOS= $(patsubst %.cpp,./obj/%.gcno,$(notdir $(SOURCES)))
+
+
+Makefile文件范例
+#BASE_DIR :=$(shell pwd)
+
+SUBDIRS= fnd_system fnd_pzasset
+
+define make_subdir
+ @for subdir in $(SUBDIRS); do \                     //@取消命令本身的输出
+ pwd && echo $$subdir && echo $1 && echo $@ || exit $$?;  \    //$1 shell第一个参数
+ done;
+endef
+
+.PHONY : all install clean                           //.PHONY 说明 all等等为伪命令
+all :
+    @echo $(BASE_DIR)
+    $(call make_subdir, all)
+
+install : 
+    $(call make_subdir, install)
+
+debug :
+    $(call make_subdir, debug)
+clean :
+    $(call make_subdir, clean)
+
+
+阿里云
+https://vpn.jbp.aliyun.com/
+ssh 登入帐号、密码  
+10.253.40.218
+
+10.139.51.206 linux用户
+root / GhL98567  
+yunqi/yunqihulian1
+
+数据库连接方式
+mysql -hrds5fijs7du5j44p1307.mysql.rds.aliyuncs.com -upzuser -ppzuser1 --port=3306 --default-character-set=utf8
+对外 ip： 121.43.73.123
+域名： www.futureandoption.com
+
+gdb 调试
+list : 从第一行开始例出原码。
+break 16/functionname
+info break
+delete breaknum
+next : 下一步
+step : 进入函数体
+finish : 退出函数
+quit : 退出gdb
+run -d
+info thread
+切换线程时需要先在run中设置断点再继续
+thread 1
+
+数据传输header
+datatype
+usrid
+session_id
+length 
+sec_type //证券品种 "1"--股票 "2"--期货
+datasrc  //数据来源	1-webservice 2-ctp front server 3-market data(stock) 4-market data(ctp) 5-transaction server(stock)
+								//6-transaction server(ctp) 7-admin terminal	8-background batch  
+								
+
+linux fcntl ioctl
+1，通过fcntl设置的都是当前进程如何访问设备或文件的访问控制属性，例如读、写、追加、非阻塞、加锁
+   等，但并不设置文件或设备本身的属性，例如文件的读写权限、串口波特率等。
+2，ioctl函数用于设置某些设备本身的属性，例如串口波特率、终端窗口大小，注意区分这两个函数的作用。
+
+
+交易端接口
+F:\workspace\fuanda\repos\PB\project\inc\domain\future_contract\trader\lib_vc100\Win32\Debug
+
+
+#include <stdio.h>    printf
+#include <stdlib.h>		exit(EXIT_SUCCESS);
+#include <errno.h>    errno
+#include <unistd.h>		read close
+
+目标：升级GCC到4.8.2，以支持C++11。
+获取GCC 4.8.2包：wget http://gcc.skazkaforyou.com/releases/gcc-4.8.2/gcc-4.8.2.tar.gz
+解压缩：tar -xf gcc-4.8.2.tar.gz
+进入到目录gcc-4.8.2，运行：./contrib/download_prerequisites。
+这个神奇的脚本文件会帮我们下载、配置、安装依赖库，可以节约我们大量的时间和精力。
+建立输出目录并到目录里：
+mkdir gcc-build-4.8.2
+cd gcc-build-4.8.2
+../configure --enable-checking=release --enable-languages=c,c++ --disable-multilib
+--enable-languages表示你要让你的gcc支持那些语言，
+--disable-multilib不生成编译为其他平台可执行代码的交叉编译器。
+--disable-checking生成的编译器在编译过程中不做额外检查，也可以使用--enable-checking=xxx来增加一些检查；
+编译：make；注意此步和上一步，比较耗时；
+安装：make  install；
+验证：gcc -v；或者g++ -v，如果显示的gcc版本仍是以前的版本，就需要重启系统；
+或者可以查看gcc的安装位置：which gcc；然后在查看版本 /usr/local/bin/gcc -v
+
+
+快期 simnow
+investor_id：039386
+pwd: 963852
+
+github 
+user:kaishansheng@163.com
+pwd:aa963852
+
+kaishan1990
+SSH:https://github.com/kaishan1990/learngit.git
+
+65:202.101.35.235:22
+63:202.101.35.235:6322
+127:202.101.35.235:12722
+
+交易终端“FND TC1.0”，程序化模块“FND PT1.0”

@@ -1,0 +1,28 @@
+﻿生成启动时间为 2016/1/26 20:49:35。
+     1>项目“F:\SolutionSample\libdevelop\DataClient\DataClient.vcxproj”在节点 2 上(build 个目标)。
+     1>InitializeBuildStatus:
+         正在创建“Debug\DataClient.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IF:\SolutionSample\include\libevent /IF:\SolutionSample\include /ID:\Qt\4.8.5\include\QtGui /ID:\Qt\4.8.5\include\QtCore /ID:\Qt\4.8.5\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D DATACLIENT_EXPORTS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt HisDataApi.cpp KlineArrayMerger.cpp KlineMerger.cpp RuntimeDataApi.cpp SearchIndex.cpp SubBarsApi.cpp SymbolInfoSet.cpp TickTcpServer.cpp
+         TickTcpServer.cpp
+     1>c1xx : fatal error C1083: 无法打开源文件:“TickTcpServer.cpp”: No such file or directory
+         SymbolInfoSet.cpp
+     1>c1xx : fatal error C1083: 无法打开源文件:“SymbolInfoSet.cpp”: No such file or directory
+         SubBarsApi.cpp
+     1>c1xx : fatal error C1083: 无法打开源文件:“SubBarsApi.cpp”: No such file or directory
+         SearchIndex.cpp
+     1>c1xx : fatal error C1083: 无法打开源文件:“SearchIndex.cpp”: No such file or directory
+         RuntimeDataApi.cpp
+     1>c1xx : fatal error C1083: 无法打开源文件:“RuntimeDataApi.cpp”: No such file or directory
+         KlineMerger.cpp
+     1>c1xx : fatal error C1083: 无法打开源文件:“KlineMerger.cpp”: No such file or directory
+         KlineArrayMerger.cpp
+     1>c1xx : fatal error C1083: 无法打开源文件:“KlineArrayMerger.cpp”: No such file or directory
+         HisDataApi.cpp
+     1>c1xx : fatal error C1083: 无法打开源文件:“HisDataApi.cpp”: No such file or directory
+         正在生成代码...
+     1>已完成生成项目“F:\SolutionSample\libdevelop\DataClient\DataClient.vcxproj”(build 个目标)的操作 - 失败。
+
+生成失败。
+
+已用时间 00:00:02.53
